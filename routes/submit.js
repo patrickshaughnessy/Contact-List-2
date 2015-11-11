@@ -1,0 +1,24 @@
+'use strict';
+
+var express = require('express');
+var router = express.Router();
+
+var Contact = require('../models/contact.js');
+
+router.post('/', function(req, res){
+  // data from post will be form submission on index.jade
+  var newContact = req.body
+
+  // add contact data to DB using Contact method
+  Contact.add(newContact, function(err){
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      console.log(newContact);
+      res.redirect('/');
+    }
+
+  });
+});
+
+module.exports = router;

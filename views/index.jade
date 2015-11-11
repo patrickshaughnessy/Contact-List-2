@@ -1,0 +1,58 @@
+html
+  head
+    title Contact List 2
+    link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="css/style.css")
+  body
+    
+    div.container
+      div.row
+        div.col-xs-4.col-xs-offset-4#titleArea
+          h1 My Contacts
+          button.btn.btn-primary.btnlg(type='button', data-toggle='modal', data-target='#addToContactsModal') Add New Contact
+          // Modal
+          #addToContactsModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+            .modal-dialog(role='document')
+              .modal-content
+                .modal-header
+                  button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') ×
+                  h4#myModalLabel.modal-title Add New Contact
+                .modal-body
+                  form.form-horizontal(method="post", action="/submit")
+                    .form-group
+                      label.col-sm-2.control-label(for='nameInput') Name
+                      .col-sm-10
+                        input#nameInput.form-control(type='text', placeholder='Full Name', name="name" value="Patrick")
+                    .form-group
+                      label.col-sm-2.control-label(for='emailInput') Email
+                      .col-sm-10
+                        input#emailInput.form-control(type='email', placeholder='Email', name="email" value="myemail@email.com")
+                    .form-group
+                      label.col-sm-2.control-label(for='phoneInput') Phone Number
+                      .col-sm-10
+                        input#phoneInput.form-control(type='tel', placeholder='Phone Number', name="phone" value="555-123-4567")
+                    button.btn.btn-primary(type='submit') Submit
+                .modal-footer
+                  button.btn.btn-default(type='button', data-dismiss='modal') Close
+    .container
+      .row
+        .col-xs-12
+          .table-responsive
+            table.table#contactsList
+              tr
+                th Name
+                th Email
+                th Phone Number
+              tr#example
+                td John Doe
+                td j@johndoe.com
+                td 555-555-5555
+                
+          
+    
+    
+    
+    script(src="bower_components/jquery/dist/jquery.min.js")
+    script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+    script(src="js/main.js")
