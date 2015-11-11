@@ -39,15 +39,20 @@ html
       .row
         .col-xs-12
           .table-responsive
-            table.table#contactsList
-              tr
+            table.table
+              thead
                 th Name
                 th Email
                 th Phone Number
-              tr#example
-                td John Doe
-                td j@johndoe.com
-                td 555-555-5555
+                th 
+                  button.btn.btn-danger#remove Remove
+              tbody#contactsList
+                //- tr#example
+                //-   td John Doe
+                //-   td j@johndoe.com
+                //-   td 555-555-5555
+                //-   td
+                //-     input(type="checkbox")
                 
           
     

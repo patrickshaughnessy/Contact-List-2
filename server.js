@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', require('./routes/index'));
 app.use('/submit', require('./routes/submit'));
 app.use('/contacts', require('./routes/contacts'));
+app.use('/delete', require('./routes/delete'));
 
 app.listen(PORT, function(){
   console.log('Listening on port: ' + PORT);
