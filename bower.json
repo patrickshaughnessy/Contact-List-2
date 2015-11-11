@@ -10,8 +10,8 @@
   "homepage": "",
   "ignore": [
     "**/.*",
-    "public/node_modules",
-    "public/bower_components",
+    "node_modules",
+    "bower_components",
     "test",
     "tests"
   ],
