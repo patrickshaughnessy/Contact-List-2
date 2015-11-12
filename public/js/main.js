@@ -9,27 +9,89 @@
     // updateTable();
 
     $('#remove').click(removeContacts);
-    // $('#contactsList').on('input', editTable);
+    $('th').on('click', 'i.fa-caret-down', sortDataAscending);
+    $('th').on('click', 'i.fa-caret-up', sortDataDescending);
+    $('#contactsList').on('keydown', function(e){
+      if (e.which === 13 ){
+        $(e.target).blur();
+        return false;
+      }
+    });
+    $('#contactsList').on('input', editTable);
+  }
+
+  function sortDataDescending(event){
+    var index = $(this).parent().index();
+
+    var toBeSorted = [];
+    $('#contactsList').find('td:nth-child(' + (index+1) + ')').each(function(i, elem){
+      toBeSorted.push(elem.textContent);
+    });
+
+    var $contactsList = $('#contactsList');
+    toBeSorted.sort();
+
+    for (var i = 0; i < toBeSorted.length; i++){
+      var textToFind = toBeSorted[i];
+      var $contactToMove = $contactsList.find('td:contains(' + textToFind + ')').parent().detach();
+      $contactsList.prepend($contactToMove);
+    }
+
+    $('.fa-caret-up').removeClass('fa-caret-up').addClass('fa-caret-down');
+
+  }
+
+  function sortDataAscending(event){
+    var index = $(this).parent().index();
+
+    var toBeSorted = [];
+    $('#contactsList').find('td:nth-child(' + (index+1) + ')').each(function(i, elem){
+      toBeSorted.push(elem.textContent);
+    });
+
+    var $contactsList = $('#contactsList');
+    toBeSorted.sort();
+
+    for (var i = toBeSorted.length-1; i >= 0; i--){
+      var textToFind = toBeSorted[i];
+      var $contactToMove = $contactsList.find('td:contains(' + textToFind + ')').parent().detach();
+      $contactsList.prepend($contactToMove);
+    }
+
+    $('.fa-caret-down').removeClass('fa-caret-down').addClass('fa-caret-up');
+
   }
 
   function editTable(event){
     // updateDB with user changes
-    var index = $(event.target).parent().index();
-    var text = $(event.target).text();
-    // key
+    // debugger;
 
-    $.post('/edit', {"index": index, "text": text})
+    var edits = {}
+    edits.index = $(event.target).parent().index();
+    edits.value = $(event.target).text();
+    switch ($(event.target).index()){
+      case 0:
+        edits.key = 'name';
+        break;
+      case 1:
+        edits.key = 'email';
+        break;
+      case 2:
+        edits.key = 'phone';
+        break;
+    }
+
+    $.post('/edit', edits)
     .done(function(data){
-      console.log('done');
-      updateTable();
+      console.log(data);
+
     }).fail(function(err){
       console.error(err);
     });
-    // debugger;
+
   }
 
   function removeContacts(){
-
     var checkedBoxesIndices = [];
     $('#contactsList input:checked').each(function(i, elem){
                           var index = ($(elem).parents('tr').index());

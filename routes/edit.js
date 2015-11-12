@@ -6,13 +6,17 @@ var router = express.Router();
 var Contact = require('../models/contact.js');
 
 router.post('/', function(req, res){
-  var data = req.body
+  var edits = req.body
+  // res.send(data);
 
-  Contact.edit(data, function(err){
+  Contact.edit(edits, function(err){
     if (err){
       res.status(400).send(err);
     } else {
-      // success call
+      res.send(edits);
     }
   });
 });
+
+
+module.exports = router;

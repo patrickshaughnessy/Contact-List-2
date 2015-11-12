@@ -40,12 +40,24 @@ Contact.delete = function(indices, cb){
     fs.writeFile('./database/contactsDB.json', data, function(err){
       if (err) return cb(err);
       cb(null);
-
     });
   });
 };
 
-// Contact.edit = function()
+Contact.edit = function(edits, cb){
+  Contact.read(function(err, contactList){
+    if (err) return cb(err);
+
+    contactList[edits.index][edits.key] = edits.value;
+
+    var data = JSON.stringify(contactList);
+
+    fs.writeFile('./database/contactsDB.json', data, function(err){
+      if (err) return cb(err);
+      cb(null);
+    });
+  });
+};
 
 
 module.exports = Contact;

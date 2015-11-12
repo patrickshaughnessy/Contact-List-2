@@ -2,6 +2,7 @@ html
   head
     title Contact List 2
     link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="bower_components/font-awesome/css/font-awesome.min.css")
     link(rel="stylesheet", href="css/style.css")
   body
     
@@ -23,15 +24,15 @@ html
                     .form-group
                       label.col-sm-2.control-label(for='nameInput') Name
                       .col-sm-10
-                        input#nameInput.form-control(type='text', placeholder='Full Name', name="name" value="Patrick")
+                        input#nameInput.form-control(type='text', placeholder='Full Name', name="name")
                     .form-group
                       label.col-sm-2.control-label(for='emailInput') Email
                       .col-sm-10
-                        input#emailInput.form-control(type='email', placeholder='Email', name="email" value="myemail@email.com")
+                        input#emailInput.form-control(type='email', placeholder='Email', name="email")
                     .form-group
                       label.col-sm-2.control-label(for='phoneInput') Phone Number
                       .col-sm-10
-                        input#phoneInput.form-control(type='tel', placeholder='Phone Number', name="phone" value="555-123-4567")
+                        input#phoneInput.form-control(type='tel', placeholder='Phone Number', name="phone")
                     button.btn.btn-primary(type='submit') Submit
                 .modal-footer
                   button.btn.btn-default(type='button', data-dismiss='modal') Close
@@ -41,17 +42,17 @@ html
           .table-responsive
             table.table
               thead
-                th Name
-                th Email
-                th Phone Number
+                th Name &nbsp; &nbsp; <i class="fa fa-lg fa-caret-down"></i>
+                th Email &nbsp; &nbsp; <i class="fa fa-lg fa-caret-down"></i>
+                th Phone Number &nbsp; &nbsp; <i class="fa fa-lg fa-caret-down"></i>
                 th 
                   button.btn.btn-danger#remove Remove
               tbody#contactsList
                 each contact in contacts
                   tr
-                    td= contact.name 
-                    td= contact.email 
-                    td= contact.phone 
+                    td(contenteditable='true')= contact.name 
+                    td(contenteditable='true')= contact.email 
+                    td(contenteditable='true')= contact.phone 
                     td
                       input(type="checkbox")
                 
