@@ -16,6 +16,7 @@ router.post('/', function(req, res){
     } else {
       // res.send(newContact);
       res.redirect('/');
+      // res.render('index', {contacts: contactsList})
     }
   });
 });

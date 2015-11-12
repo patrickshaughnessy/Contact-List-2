@@ -6,14 +6,14 @@ var router = express.Router();
 var Contact = require('../models/contact.js');
 
 router.post('/', function(req, res){
-  var indices = req.body;
+  var timestamps = req.body;
 
-  Contact.delete(indices, function(err){
+  Contact.delete(timestamps, function(err){
     if (err){
       res.status(400).send(err);
     } else {
       // res.redirect('/');
-      res.send('deleted info at rows: ' + JSON.stringify(indices));
+      res.send('deleted selected contacts');
     }
   });
 });

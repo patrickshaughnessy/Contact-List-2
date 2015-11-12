@@ -67,7 +67,7 @@
     // debugger;
 
     var edits = {}
-    edits.index = $(event.target).parent().index();
+    edits.timestamp = $(event.target).siblings('.timestamp').text();
     edits.value = $(event.target).text();
     switch ($(event.target).index()){
       case 0:
@@ -92,13 +92,14 @@
   }
 
   function removeContacts(){
-    var checkedBoxesIndices = [];
-    $('#contactsList input:checked').each(function(i, elem){
-                          var index = ($(elem).parents('tr').index());
-                          checkedBoxesIndices.push(index);
-                      });
+    var checkedTimestamps = [];
+    $('#contactsList input:checked').parents('td').siblings('.timestamp')
+      .each(function(i, elem){
+          var timestamp = elem.textContent;
+          checkedTimestamps.push(timestamp);
+      });
 
-    $.post('/delete', {"checked":checkedBoxesIndices})
+    $.post('/delete', {"checked":checkedTimestamps})
     .done(function(data){
       console.log(data);
       // updateTable();

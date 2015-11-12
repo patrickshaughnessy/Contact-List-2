@@ -20,22 +20,23 @@ html
                     span(aria-hidden='true') ×
                   h4#myModalLabel.modal-title Add New Contact
                 .modal-body
-                  form.form-horizontal(method="post", action="/submit")
+                  form.form-horizontal(method="post", action="/submit" data-toggle="validator")
                     .form-group
                       label.col-sm-2.control-label(for='nameInput') Name
                       .col-sm-10
-                        input#nameInput.form-control(type='text', placeholder='Full Name', name="name")
+                        input#nameInput.form-control(type='text', placeholder='Full Name', name="name", required)
                     .form-group
                       label.col-sm-2.control-label(for='emailInput') Email
                       .col-sm-10
-                        input#emailInput.form-control(type='email', placeholder='Email', name="email")
+                        input#emailInput.form-control(type='email', placeholder='Email', name="email", required)
                     .form-group
                       label.col-sm-2.control-label(for='phoneInput') Phone Number
                       .col-sm-10
-                        input#phoneInput.form-control(type='tel', placeholder='Phone Number', name="phone")
+                        input#phoneInput.form-control(type='tel', placeholder='(555) 555-5555', name="phone", pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$", required)
                     button.btn.btn-primary(type='submit') Submit
                 .modal-footer
                   button.btn.btn-default(type='button', data-dismiss='modal') Close
+  if contacts.length
     .container
       .row
         .col-xs-12
@@ -55,11 +56,13 @@ html
                     td(contenteditable='true')= contact.phone 
                     td
                       input(type="checkbox")
+                    td.timestamp= contact.timestamp
                 
           
     
     
     
-    script(src="bower_components/jquery/dist/jquery.min.js")
-    script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
-    script(src="js/main.js")
+  script(src="bower_components/jquery/dist/jquery.min.js")
+  script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+  script(src="bower_components/bootstrap-validator/dist/validator.min.js")
+  script(src="js/main.js")

@@ -16,6 +16,7 @@ router.get('/', function(req, res){
       res.status(400).send(err);
     } else {
       res.render('index', {contacts: contactsList})
+      // res.render('index');
     }
   });
 
