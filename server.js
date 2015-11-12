@@ -10,6 +10,7 @@ var app = express();
 app.set('view engine', 'jade');
 app.use(morgan('dev'));
 app.use(express.static('public'));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
@@ -17,6 +18,7 @@ app.use('/', require('./routes/index'));
 app.use('/submit', require('./routes/submit'));
 app.use('/contacts', require('./routes/contacts'));
 app.use('/delete', require('./routes/delete'));
+// app.use('/edit', require('./routes/edit'));
 
 app.listen(PORT, function(){
   console.log('Listening on port: ' + PORT);

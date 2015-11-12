@@ -47,12 +47,13 @@ html
                 th 
                   button.btn.btn-danger#remove Remove
               tbody#contactsList
-                //- tr#example
-                //-   td John Doe
-                //-   td j@johndoe.com
-                //-   td 555-555-5555
-                //-   td
-                //-     input(type="checkbox")
+                each contact in contacts
+                  tr
+                    td= contact.name 
+                    td= contact.email 
+                    td= contact.phone 
+                    td
+                      input(type="checkbox")
                 
           
     

@@ -31,13 +31,7 @@ Contact.delete = function(indices, cb){
   Contact.read(function(err, contactList){
     if (err) return cb(err);
 
-    console.log(indices.checked, contactList);
-    // indices.checked.forEach(function(index){
-    //   contactList.splice(parseInt(index), 1);
-    // });
     for (var i = indices.checked.length-1; i >=0; i--){
-      console.log('here');
-      console.log(parseInt(indices.checked[i]));
       contactList.splice(parseInt(indices.checked[i]), 1);
     }
 
@@ -50,6 +44,8 @@ Contact.delete = function(indices, cb){
     });
   });
 };
+
+// Contact.edit = function()
 
 
 module.exports = Contact;
